@@ -210,6 +210,22 @@ public class SimulationPlotPanel extends PlotPanel<FlightDataType, FlightDataBra
 				eventTableModel.fireTableDataChanged();
 			}
 		});
+		selectorPanel.add(button, "gapleft para, gapright para, growx, sizegroup buttons");
+
+		//// Toggle
+		button = new JButton("Toggle"); // TODO: Add translation key
+		button.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (FlightEvent.Type t : FlightEvent.Type.values()) {
+					SimulationPlotConfiguration configuration = (SimulationPlotConfiguration) getConfiguration();
+					if (configuration != null) {
+						configuration.setEvent(t, !configuration.isEventActive(t));
+					}
+				}
+				eventTableModel.fireTableDataChanged();
+			}
+		});
 		selectorPanel.add(button, "gapleft para, gapright para, growx, sizegroup buttons, wrap");
 
 
